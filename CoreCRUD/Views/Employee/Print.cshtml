@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CoreCRUD.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee";
+}
+<h4>Register Employee</h4>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfficeLocation)
+            </th>
+            <th>
+                <a asp-action="AddOrEdit" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Add</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeLocation)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.EmployeeId"><i class="fa fa-marker fa-lg"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="text-danger ml-1" onclick="return confirm('Are you sure delete this record?')">
+                        <i class="fa fa-trash fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
